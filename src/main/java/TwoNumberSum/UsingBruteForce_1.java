@@ -1,4 +1,6 @@
-public class SumTwoProblem {
+package TwoNumberSum;
+
+public class UsingBruteForce_1 {
 //    FUNCTION THAT CHECKS IF INPUT ADDED GIVES THE REQUIRED SUM
     public static void sumTwoNumbers( int [] arr, int sum){
 
