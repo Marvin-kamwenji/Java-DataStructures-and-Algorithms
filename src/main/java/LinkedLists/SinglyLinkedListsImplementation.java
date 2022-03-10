@@ -132,6 +132,26 @@ public class SinglyLinkedListsImplementation {
         return temp;
     }
 
+    //Deleting last node of a singly linked list
+
+    public LinkNode deleteLastNodeElement(){
+        if (head == null || head.next == null){
+            return head;
+        }
+
+        //Create two pointers
+        LinkNode current = head;
+        LinkNode previous = null;
+
+        while(current.next != null){
+            previous = current;
+            current = current.next;
+        }
+
+        previous.next =null;
+        return  current;
+    }
+
 /*-----------------------------------------------------------------*/
 /*--------------------------MAIN METHOD-----------------------------*/
 /*------------------------------------------------------------------*/
@@ -180,7 +200,12 @@ public class SinglyLinkedListsImplementation {
  /*-------------------------------------------------------------*/
  /*------------------CALLING DELETING METHODS-------------------*/
  /*-------------------------------------------------------------*/
-         node.deleteFirstNodeElement();
+
+        //Deleting the first node in singly linked list
+        System.out.println(node.deleteFirstNodeElement().data);
+
+        //Deleting the last node in singly linked list
+        System.out.println(node.deleteLastNodeElement().data);
 
  /*-------------------------------------------------------------*/
  /*-------------------CALLING DISPLAY METHOD--------------------*/
