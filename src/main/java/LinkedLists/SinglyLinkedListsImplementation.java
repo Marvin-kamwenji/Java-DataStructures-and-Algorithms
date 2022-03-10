@@ -24,6 +24,10 @@ public class SinglyLinkedListsImplementation {
 
     }
 
+    /*---------------------------------------------------------------*/
+    /*-------------DISPLAYING ELEMENTS IN A LINKED LIST--------------*/
+    /*---------------------------------------------------------------*/
+
     // Create a display Method that will display all the linked nodes
 
     public void display(){
@@ -43,7 +47,9 @@ public class SinglyLinkedListsImplementation {
           System.out.print("null");
     }
 
-
+    /*-------------------------------------------------------------*/
+    /*-----------------FINDING LENGTH OF LINKED LIST--------------*/
+    /*------------------------------------------------------------*/
 
     //A method that returns the length of the list
     public int lengthOfList(){
@@ -60,6 +66,10 @@ public class SinglyLinkedListsImplementation {
     return count;
     }
 
+    /*--------------------------------------------------------------*/
+    /*---------INSERTING ELEMENTS IN A SINGLY LINKED LIST-----------*/
+    /*--------------------------------------------------------------*/
+
     //This method inserts elements at the beginning of the linked list
     public void insertAtTheBeginning(int value){
         LinkNode newNode = new LinkNode(value);
@@ -68,7 +78,7 @@ public class SinglyLinkedListsImplementation {
     }
 
     //This method inserts elements at the end of the linked list
-    public void inserAtTheEnd(int value){
+    public void insertAtTheEnd(int value){
         LinkNode newNode = new LinkNode(value);
         if(head == null){
             head = newNode;
@@ -80,7 +90,52 @@ public class SinglyLinkedListsImplementation {
         current.next = newNode;
     }
 
-    //The main method
+    //This method inserts elements at any given position of the linked list
+    public void insertAtAnyPoint(int position, int value){
+        LinkNode node = new LinkNode(value);
+
+        if (position == 1){
+            node.next = head;
+            head = node;
+        }
+        else {
+            LinkNode previous = head;
+            int count = 1;
+
+            while(count < position - 1){
+                previous = previous.next;
+                count ++;
+            }
+
+            LinkNode current = previous.next;
+            previous.next = node;
+            node.next = current;
+        }
+    }
+
+
+ /*-----------------------------------------------------------------------*/
+ /*------------DELETING ELEMENTS FROM A SINGLY LINKED LIST----------------*/
+ /*-----------------------------------------------------------------------*/
+
+ //Deleting first node of a singly linked list
+
+    public LinkNode deleteFirstNodeElement(){
+        if(head == null){
+            return null;
+        }
+
+        LinkNode temp = head;
+        head = head.next;
+        temp.next = null;
+
+        return temp;
+    }
+
+/*-----------------------------------------------------------------*/
+/*--------------------------MAIN METHOD-----------------------------*/
+/*------------------------------------------------------------------*/
+
     public static void main(String [] args) {
 
        // Giving our head element data
@@ -98,6 +153,9 @@ public class SinglyLinkedListsImplementation {
         third.next = fourth;  // 67 --> 80
 
 
+  /*-----------------------------------------------------------*/
+  /*--------------CALLING INSERTING METHODS--------------------*/
+  /*-----------------------------------------------------------*/
 
         //Calling the insertAtTheBeginning method
         //Inserting values at the beginning of the list
@@ -107,14 +165,33 @@ public class SinglyLinkedListsImplementation {
 
         //Calling the insertAtTheEnd method
         //Inserting values at the end of the list
-        node.inserAtTheEnd(4);
-        node.inserAtTheEnd(98);
+        node.insertAtTheEnd(4);
+        node.insertAtTheEnd(98);
 
+
+        //Calling the insertAtAnyPoint method
+        //Inserting values at any given position
+
+        node.insertAtAnyPoint(3, 14);
+        node.insertAtAnyPoint(1, 10);
+
+
+
+ /*-------------------------------------------------------------*/
+ /*------------------CALLING DELETING METHODS-------------------*/
+ /*-------------------------------------------------------------*/
+         node.deleteFirstNodeElement();
+
+ /*-------------------------------------------------------------*/
+ /*-------------------CALLING DISPLAY METHOD--------------------*/
+ /*-------------------------------------------------------------*/
 
         //Calling the display Method
         //It displays the elements in the linked list
         node.display();
-
+ /*---------------------------------------------------------------*/
+ /*------------SHOW LENGTH OF LINKED LIST METHOD------------------*/
+ /*---------------------------------------------------------------*/
         //Print the length of the list
         //Calling the lengthOfListMethod
         System.out.println("\n The length of the list is: " + node.lengthOfList());
