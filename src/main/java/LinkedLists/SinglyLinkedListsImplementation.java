@@ -24,9 +24,9 @@ public class SinglyLinkedListsImplementation {
 
     }
 
-    /*---------------------------------------------------------------*/
-    /*-------------DISPLAYING ELEMENTS IN A LINKED LIST--------------*/
-    /*---------------------------------------------------------------*/
+    /*================================================================*/
+    /*=============DISPLAYING ELEMENTS IN A LINKED LIST===============*/
+    /*================================================================*/
 
     // Create a display Method that will display all the linked nodes
 
@@ -47,9 +47,9 @@ public class SinglyLinkedListsImplementation {
           System.out.print("null");
     }
 
-    /*-------------------------------------------------------------*/
-    /*-----------------FINDING LENGTH OF LINKED LIST--------------*/
-    /*------------------------------------------------------------*/
+    /*=============================================================*/
+    /*=================FINDING LENGTH OF LINKED LIST===============*/
+    /*=============================================================*/
 
     //A method that returns the length of the list
     public int lengthOfList(){
@@ -66,9 +66,9 @@ public class SinglyLinkedListsImplementation {
     return count;
     }
 
-    /*--------------------------------------------------------------*/
-    /*---------INSERTING ELEMENTS IN A SINGLY LINKED LIST-----------*/
-    /*--------------------------------------------------------------*/
+    /*===============================================================*/
+    /*==========INSERTING ELEMENTS IN A SINGLY LINKED LIST===========*/
+    /*===============================================================*/
 
     //This method inserts elements at the beginning of the linked list
     public void insertAtTheBeginning(int value){
@@ -114,9 +114,9 @@ public class SinglyLinkedListsImplementation {
     }
 
 
- /*-----------------------------------------------------------------------*/
- /*------------DELETING ELEMENTS FROM A SINGLY LINKED LIST----------------*/
- /*-----------------------------------------------------------------------*/
+ /*========================================================================*/
+ /*==============DELETING ELEMENTS FROM A SINGLY LINKED LIST===============*/
+ /*========================================================================*/
 
  //Deleting first node of a singly linked list
 
@@ -152,9 +152,49 @@ public class SinglyLinkedListsImplementation {
         return  current;
     }
 
-/*-----------------------------------------------------------------*/
-/*--------------------------MAIN METHOD-----------------------------*/
-/*------------------------------------------------------------------*/
+    //Deleting a node at any given position
+
+    public void deleteAtAnyPoint(int position){
+        if(position == 1){
+            head = head.next;
+        }
+        else{
+            LinkNode previous = head;
+            int count = 0;
+            while (count < position - 1){
+                previous = previous.next;
+                count++;
+            }
+
+            LinkNode current = previous.next;
+            previous.next = current.next;
+
+        }
+    }
+
+
+/*===================================================================*/
+/*================SEARCHING THROUGH A LINKED LIST====================*/
+/*===================================================================*/
+
+public boolean findNode(LinkNode head, int searchKey){
+    if(head == null){
+        return false;
+    }
+    LinkNode current = head;
+    while(current != null) {
+        if(current.data == searchKey){
+            return true;
+        }
+        current = current.next;
+    }
+    return  false;
+
+}
+
+/*===================================================================*/
+/*============================MAIN METHOD============================*/
+/*===================================================================*/
 
     public static void main(String [] args) {
 
@@ -173,9 +213,9 @@ public class SinglyLinkedListsImplementation {
         third.next = fourth;  // 67 --> 80
 
 
-  /*-----------------------------------------------------------*/
-  /*--------------CALLING INSERTING METHODS--------------------*/
-  /*-----------------------------------------------------------*/
+  /*============================================================*/
+  /*================CALLING INSERTING METHODS===================*/
+  /*============================================================*/
 
         //Calling the insertAtTheBeginning method
         //Inserting values at the beginning of the list
@@ -197,9 +237,9 @@ public class SinglyLinkedListsImplementation {
 
 
 
- /*-------------------------------------------------------------*/
- /*------------------CALLING DELETING METHODS-------------------*/
- /*-------------------------------------------------------------*/
+ /*==============================================================*/
+ /*==================CALLING DELETING METHODS====================*/
+ /*==============================================================*/
 
         //Deleting the first node in singly linked list
         System.out.println(node.deleteFirstNodeElement().data);
@@ -207,16 +247,33 @@ public class SinglyLinkedListsImplementation {
         //Deleting the last node in singly linked list
         System.out.println(node.deleteLastNodeElement().data);
 
- /*-------------------------------------------------------------*/
- /*-------------------CALLING DISPLAY METHOD--------------------*/
- /*-------------------------------------------------------------*/
+        //Deleting a node from a singly linked list from any point
+
+        node.deleteAtAnyPoint(3);
+
+
+ /*===================================================================*/
+ /*===================CALLING THE SEARCH METHOD=======================*/
+ /*===================================================================*/
+
+        if(node.findNode(node.head, 10)){
+            System.out.println("Element has been found");
+        }
+        else {
+            System.out.println("Element not found");
+        }
+
+ /*==============================================================*/
+ /*===================CALLING DISPLAY METHOD=====================*/
+ /*==============================================================*/
 
         //Calling the display Method
         //It displays the elements in the linked list
         node.display();
- /*---------------------------------------------------------------*/
- /*------------SHOW LENGTH OF LINKED LIST METHOD------------------*/
- /*---------------------------------------------------------------*/
+
+ /*================================================================*/
+ /*=============SHOW LENGTH OF LINKED LIST METHOD==================*/
+ /*================================================================*/
         //Print the length of the list
         //Calling the lengthOfListMethod
         System.out.println("\n The length of the list is: " + node.lengthOfList());
