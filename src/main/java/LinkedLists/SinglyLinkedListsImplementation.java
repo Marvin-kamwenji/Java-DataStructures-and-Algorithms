@@ -192,6 +192,80 @@ public boolean findNode(LinkNode head, int searchKey){
 
 }
 
+/*===========================================================================*/
+/*=================REVERSING A SINGLY LINKED LIST============================*/
+/*===========================================================================*/
+
+public LinkNode reverseNodes(LinkNode head){
+    if (head == null){
+        return null;
+    }
+
+    //Declare variables
+    LinkNode current = head;
+    LinkNode previous = null;
+    LinkNode next ;
+    while (current != null){
+        next = current.next;
+        current.next = previous;
+        previous = current;
+        current = next;
+    }
+    return previous;
+}
+
+
+/*==========================================================================*/
+/*===============GETTING THE MIDDLE ELEMENT IN LINKED LIST==================*/
+/*==========================================================================*/
+public LinkNode getMiddleElement(){
+
+    if(head == null){
+        return null;
+    }
+
+    //Declaring variables
+    LinkNode slowPointer = head;
+    LinkNode fastPointer = head;
+
+    while (fastPointer != null && fastPointer.next != null){
+        slowPointer = slowPointer.next;
+        fastPointer = fastPointer.next.next;
+    }
+
+    return  slowPointer;
+}
+
+
+/*==============================================================================*/
+/*==============GETTING NTH ELEMENT FROM END OF A LINKED LIST===================*/
+/*==============================================================================*/
+
+public LinkNode getNthElementFromEnd(int n){
+    if(head == null){
+        return null;
+    }
+
+    if(n <= 0){
+        throw new IllegalArgumentException("Invalid value of n" + n);
+    }
+
+    LinkNode mainPointer = head;
+    LinkNode referencePointer = head;
+
+    int count = 0;
+    while(count < n){
+        referencePointer = referencePointer.next;
+        count++;
+    }
+    while(referencePointer != null){
+        referencePointer = referencePointer.next;
+        mainPointer = mainPointer.next;
+    }
+    return mainPointer;
+}
+
+
 /*===================================================================*/
 /*============================MAIN METHOD============================*/
 /*===================================================================*/
@@ -263,6 +337,20 @@ public boolean findNode(LinkNode head, int searchKey){
             System.out.println("Element not found");
         }
 
+
+ /*=====================================================================*/
+ /*===================CALLING GET MIDDLE ELEMENT========================*/
+ /*=====================================================================*/
+
+        System.out.println("The middle element is: " + node.getMiddleElement().data);
+
+
+  /*=====================================================================*/
+  /*===========CALLING THE GET NTH ELEMENT FROM END OF LIST==============*/
+  /*=====================================================================*/
+        System.out.println("The Nth element is: "+ node.getNthElementFromEnd(2).data);
+
+
  /*==============================================================*/
  /*===================CALLING DISPLAY METHOD=====================*/
  /*==============================================================*/
@@ -270,6 +358,13 @@ public boolean findNode(LinkNode head, int searchKey){
         //Calling the display Method
         //It displays the elements in the linked list
         node.display();
+
+
+ /*===============================================================*/
+ /*====================DISPLAY REVERSED LIST======================*/
+ /*===============================================================*/
+//        System.out.println(node.reverseNodes(node.head));
+
 
  /*================================================================*/
  /*=============SHOW LENGTH OF LINKED LIST METHOD==================*/
