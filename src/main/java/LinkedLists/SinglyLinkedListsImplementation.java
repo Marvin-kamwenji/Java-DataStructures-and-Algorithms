@@ -254,7 +254,7 @@ public LinkNode getNthElementFromEnd(int n){
     LinkNode referencePointer = head;
 
     int count = 0;
-    while(count < n){
+    while(count < n && referencePointer != null){
         referencePointer = referencePointer.next;
         count++;
     }
@@ -265,6 +265,25 @@ public LinkNode getNthElementFromEnd(int n){
     return mainPointer;
 }
 
+/*===========================================================================*/
+/*==================REMOVING DUPLICATES FROM LINKED LIST=====================*/
+/*===========================================================================*/
+
+public void removeDuplicates(){
+    if(head == null){
+        return;
+    }
+
+    LinkNode current = head;
+    while(current.next != null) {
+        if (current.data == current.next.data) {
+            current.next = current.next.next;
+        }
+        else {
+            current = current.next;
+        }
+    }
+}
 
 /*===================================================================*/
 /*============================MAIN METHOD============================*/
@@ -350,6 +369,10 @@ public LinkNode getNthElementFromEnd(int n){
   /*=====================================================================*/
         System.out.println("The Nth element is: "+ node.getNthElementFromEnd(2).data);
 
+  /*====================================================================*/
+  /*===============CALLING THE REMOVE DUPLICATES METHOD=================*/
+  /*====================================================================*/
+  node.removeDuplicates();
 
  /*==============================================================*/
  /*===================CALLING DISPLAY METHOD=====================*/
