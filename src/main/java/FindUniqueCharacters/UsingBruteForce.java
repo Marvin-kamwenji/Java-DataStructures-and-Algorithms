@@ -8,7 +8,7 @@ public class UsingBruteForce {
     /*=============METHOD TO FIND UNIQUE CHARACTERS==================*/
     /*===============================================================*/
     public static boolean findUniqueCharacters(String testString){
-        for(int i = 0; i < testString.length(); i++){
+        for(int i = 0; i < testString.length() - 1; i++){
             for(int j = i + 1; j < testString.length(); j++){
                 if(testString.charAt(i) == testString.charAt(j)){
                     return  false;
